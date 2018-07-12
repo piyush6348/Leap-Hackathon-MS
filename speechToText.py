@@ -1,47 +1,12 @@
 import requests
 import json
 import os
+import sys
 
-header = {
-    'Content-type':'application/x-www-form-urlencoded',
-    'Content-Length': '0',
-    'Ocp-Apim-Subscription-Key':'bd9852f25e2b4ebca00a832fef77abee'
-    }
-response = requests.post('https://westus.api.cognitive.microsoft.com/sts/v1.0/issueToken', headers=header)
-# print(type(response))
-# print(response.text)
-
-SpeechServiceURI ='https://westus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-us&format=detailed'
-authorization = 'Bearer ' + response.text
-recoRequestHeader = {
-    'Authorization' : authorization,
-    # 'Transfer-Encoding' : 'chunked',
-    'Content-type' : 'audio/wav; codec=audio/pcm; samplerate=16000'
-    }
-
-# with open(r"C:\Users\utchauha\Downloads\LeapHackathon\eng_f4.wav", 'rb') as f:
-#    audioBytes = f.read()
-
-base_dir = 'C:\\Users\\Administrator\\Desktop\\Hackathon project\\out\\'
-files = os.listdir(base_dir)
-for x in files:
-    audioBytes = open(base_dir+x, 'rb').read()
-
-    textGenerated = requests.post(SpeechServiceURI, headers=recoRequestHeader, data=audioBytes)
-    # print(textGenerated.__dict__.keys())
-    data = json.loads(textGenerated.text)
-    # text = textGenerated.__dict__['_content']['NBest']
-    # print(data)
-    # for k,d in data['NBest'][0].items():
-            # print("key: ", k, " data: ", d)
-    
-    text = data.get('NBest', None)
-    if text:
-        text = text[0]['Display']
-    else:
-        continue
-
-    print(text)
+def getKeywords(text=None):
+    if text is None:
+        print("No valid text")
+        sys.exit(1)
 
     keywords = list()
 
@@ -78,4 +43,48 @@ for x in files:
     except Exception as e:
         print("[Errno {0}] {1}".format(e.errno, e.strerror))
 
-    print(keywords)
+    return keywords
+
+
+def getText():
+
+    # get token
+    header = {
+        'Content-type':'application/x-www-form-urlencoded',
+        'Content-Length': '0',
+        'Ocp-Apim-Subscription-Key':'bd9852f25e2b4ebca00a832fef77abee'
+        }
+    response = requests.post('https://westus.api.cognitive.microsoft.com/sts/v1.0/issueToken', headers=header)
+    # print(type(response))
+    # print(response.text)
+
+    SpeechServiceURI ='https://westus.stt.speech.microsoft.com/speech/recognition/conversation/cognitiveservices/v1?language=en-us&format=detailed'
+    authorization = 'Bearer ' + response.text
+    recoRequestHeader = {
+        'Authorization' : authorization,
+        # 'Transfer-Encoding' : 'chunked',
+        'Content-type' : 'audio/wav; codec=audio/pcm; samplerate=16000'
+        }
+
+    # base_dir = 'C:\\Users\\Administrator\\Desktop\\Hackathon project\\out\\'
+    base_dir = os.getcwd()
+    base_dir = os.path.join(base_dir, "out")
+    files = os.listdir(base_dir)
+    for x in files:
+        audioBytes = open(os.path.join(base_dir,x), 'rb').read()
+
+        textGenerated = requests.post(SpeechServiceURI, headers=recoRequestHeader, data=audioBytes)
+        # print(textGenerated.__dict__.keys())
+        data = json.loads(textGenerated.text)
+        
+        text = data.get('NBest', None)
+        if text:
+            text = text[0]['Display']
+        else:
+            continue
+
+        print(text)
+        keywords = getKeywords(text)
+        print(keywords)
+
+getText()
