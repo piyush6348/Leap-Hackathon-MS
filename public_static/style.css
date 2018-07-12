@@ -1,34 +1,30 @@
-.dropbtn {
-    font-size: 16px;
-    cursor: pointer;
-
-    width:100px;
-    height:46px;
-}
-
-
-.dropdown {
-    float:left;
-}
-
-.dropdown-content {
-    display: none;
-    position: absolute;
-    background-color: #f1f1f1;
-    min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-    color: black;
-    padding: 12px 16px;
-    text-decoration: none;
+body select { 
     display: block;
+    font-size:18px;
+    max-width: 100%;
+	width:100px; 
+    height: 47px;
+    border: 1px solid black;
+    background: url("https://image.ibb.co/iMeAJv/selectbox_arrow.png") right center no-repeat; 
+    background-color:#D3D3D3;
+	color: #444444;  
+    line-height: 20px !important; 
+    appearance: none; 
+    -moz-appearance: none; 
+} 
+/* body select.select_box option */ 
+body select option { 
+    padding: 0 4px; 
+} 
+/* for IE and Edge */ 
+select::-ms-expand { 
+    display: none; 
+} 
+select:disabled::-ms-expand { 
+    background: #f60; 
 }
 
-/* Change color of dropdown links on hover */
-
-/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
-.show {display:block;} 
+button:hover
+{
+background-color:rgb(34,62,110);
+}
