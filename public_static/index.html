@@ -5,24 +5,17 @@
     <script src="jquery.js"></script>
     <script src="index.js"></script>
     <script>
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
+        function playVid() {
+            var url = document.getElementById("url").value;
+            var str = url.split("=");
+            var src = 'https://www.youtube.com/embed/' + str[1];
+            console.log(src);
+            var htm = '<iframe id="vid"  width="1200" height="500" src="' + src +'" frameborder="0"  allow="autoplay; encrypted-media" allowfullscreen></iframe>'
+            $("#vid_container").html(htm);
+
+            document.getElementById("captionText").innerHTML = "HEYAAAAA" + url;
+            document.getElementById("meaningText").innerHTML = "YOYO";
         }
-
-        // Close the dropdown menu if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
-
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        } 
     </script>
     <link rel="stylesheet" type="text/css" href="style.css" />
     <div style="height:150px;padding-left:200px;background-color:rgb(34,62,110);color:white;font-size:20px;">
@@ -31,14 +24,13 @@
     </div>
 </head>
 <body>
-<div style="margin-left:200px;width:1200px;">
-    <div style="border:1px solid black;width:1200px;height:500px;margin-top:50px;">
-        <video></video>
-    </div>
-    <div>
+    <div style="margin-left:200px;width:1200px;">
+        <div id="vid_container" style="border:1px solid black;width:1200px;height:500px;margin-top:50px;">
+        </div>
+
         <div style="float:left;">
             URL:
-            <input type="text" style="width:955px;height:40px;font-size:20px" />
+            <input id="url" type="text" style="width:955px;height:40px;font-size:20px" />
         </div>
         <div class="dropdown">
             <select id="select_box" style="float:left;width:100px;height:46px;">
@@ -50,10 +42,16 @@
 
         </div>
         <div style="float:right;">
-            <button id="playBtn" style="width:100px;height:46px;"> Play </button>
+            <button id="playBtn" style="width:100px;height:46px; " onclick="playVid()"> Play </button>
+        </div>
+        <div style="float:left;width:1200px;height:200px;">
+        <div id="captionText" style="float:left;width:695px;height:200px;overflow:scroll;border:1px solid black"></div>
+        <div id="meaningText" style="float:left;width:495px;height:200px;overflow:scroll;border:1px solid black"></div>       
+        </div>
         </div>
     </div>
-</div>
+
+    </div>
 
 </body>
 </html>
