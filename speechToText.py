@@ -70,6 +70,10 @@ def getText():
     base_dir = os.getcwd()
     base_dir = os.path.join(base_dir, "out")
     files = os.listdir(base_dir)
+    output = {
+        'captions': [],
+        'keywords': []
+        }
     for x in files:
         audioBytes = open(os.path.join(base_dir,x), 'rb').read()
 
@@ -83,8 +87,11 @@ def getText():
         else:
             continue
 
-        print(text)
+        # print(text)
         keywords = getKeywords(text)
-        print(keywords)
+        # print(keywords)
+        output['captions'].append(text)
+        output['keywords'].append(keywords)
+    return output
 
-getText()
+# getText()
