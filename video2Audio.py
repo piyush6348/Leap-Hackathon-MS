@@ -8,9 +8,8 @@ def extractAudio(url="", path=""):
     bestaudio = video.getbestaudio()
     bestaudio.download(filepath=path)
 
-def fun():
+def vta(url='https://youtu.be/VJCXwxvLNkY'):
     BASE = "C:\\Users\\Administrator\\Music\\"
-    url = "https://youtu.be/VJCXwxvLNkY"
     ffmpeg_path = "C:\\ffmpeg-20180712-3ce4034-win64-static\\bin\\ffmpeg"
     source_name = "final.webm"
     source = BASE + source_name
@@ -27,4 +26,5 @@ def fun():
     extractAudio(url, source)
     subprocess.call(command,shell=True)
     subprocess.call(ek_aur_command, shell=True)
-fun()
+
+
