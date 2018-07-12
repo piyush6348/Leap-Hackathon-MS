@@ -4,9 +4,29 @@
 <head>
     <script src="jquery.js"></script>
     <script src="index.js"></script>
+    <script>
+        function myFunction() {
+            document.getElementById("myDropdown").classList.toggle("show");
+        }
 
+        // Close the dropdown menu if the user clicks outside of it
+        window.onclick = function (event) {
+            if (!event.target.matches('.dropbtn')) {
+
+                var dropdowns = document.getElementsByClassName("dropdown-content");
+                var i;
+                for (i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.classList.contains('show')) {
+                        openDropdown.classList.remove('show');
+                    }
+                }
+            }
+        } 
+    </script>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <div style="height:150px;padding-left:200px;background-color:rgb(34,62,110);color:white;font-size:20px;">
-        <h1>Vid Bud</h1>
+        <h1>Verlock</h1>
         <h2>An Extension to view the videos smartly.</h2>
     </div>
 </head>
@@ -15,13 +35,21 @@
     <div style="border:1px solid black;width:1200px;height:500px;margin-top:50px;">
         <video></video>
     </div>
-    <div >
+    <div>
         <div style="float:left;">
             URL:
-            <input type="text" style="width:1055px;height:40px;"/>
+            <input type="text" style="width:955px;height:40px;font-size:20px" />
+        </div>
+        <div class="dropdown" >
+            <button onclick="myFunction()" class="dropbtn">Language</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#">Link 1</a>
+                <a href="#">Link 2</a>
+                <a href="#">Link 3</a>
+            </div>
         </div>
         <div style="float:right;">
-            <button id="playBtn"  style="width:100px;height:45px;"> Play </button>
+            <button id="playBtn" style="width:100px;height:46px;"> Play </button>
         </div>
     </div>
 </div>
