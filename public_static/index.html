@@ -4,26 +4,26 @@
 <head>
     <script src="jquery.js"></script>
     <script src="index.js"></script>
-    <script>
-        function myFunction() {
-            document.getElementById("myDropdown").classList.toggle("show");
-        }
+    <!--<script>-->
+        <!--function myFunction() {-->
+            <!--document.getElementById("myDropdown").classList.toggle("show");-->
+        <!--}-->
 
-        // Close the dropdown menu if the user clicks outside of it
-        window.onclick = function (event) {
-            if (!event.target.matches('.dropbtn')) {
+        <!--// Close the dropdown menu if the user clicks outside of it-->
+        <!--window.onclick = function (event) {-->
+            <!--if (!event.target.matches('.dropbtn')) {-->
 
-                var dropdowns = document.getElementsByClassName("dropdown-content");
-                var i;
-                for (i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
-            }
-        } 
-    </script>
+                <!--var dropdowns = document.getElementsByClassName("dropdown-content");-->
+                <!--var i;-->
+                <!--for (i = 0; i < dropdowns.length; i++) {-->
+                    <!--var openDropdown = dropdowns[i];-->
+                    <!--if (openDropdown.classList.contains('show')) {-->
+                        <!--openDropdown.classList.remove('show');-->
+                    <!--}-->
+                <!--}-->
+            <!--}-->
+        <!--} -->
+    <!--</script>-->
     <link rel="stylesheet" type="text/css" href="style.css" />
     <div style="height:150px;padding-left:200px;background-color:rgb(34,62,110);color:white;font-size:20px;">
         <h1>Verlock</h1>
@@ -38,14 +38,14 @@
     <div>
         <div style="float:left;">
             URL:
-            <input type="text" style="width:955px;height:40px;font-size:20px" />
+            <input type="text" style="width:955px;height:40px;font-size:20px" id ="urlVal"/>
         </div>
         <div class="dropdown">
             <select id="select_box" style="float:left;width:100px;height:46px;">
-                <option value="1">English</option>
-                <option value="2">Hindi</option>
-                <option value="2">German</option>
-                <option value="2">Spanish</option>
+                <option value="en">English</option>
+                <option value="hi">Hindi</option>
+                <option value="de">German</option>
+                <option value="es">Spanish</option>
             </select>
 
         </div>
