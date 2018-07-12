@@ -121,4 +121,4 @@ def translate(query, language_dest):
     str = json.loads(rsp)
     return str[0][0][0]
 
-print (translate('This is the test line', 'de'))
+# print (translate('This is the test line', 'de'))
