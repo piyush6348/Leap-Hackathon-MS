@@ -8,10 +8,10 @@ import getMeaning as gm
 results = {}
 trans_cap = []
 meaning = []
-# url = sys.argv[1]
-# lang_dest = sys.argv[2]
-url = 'https://youtu.be/VJCXwxvLNkY'
-lang_dest = 'ar'
+url = sys.argv[1]
+lang_dest = sys.argv[2]
+#url = 'https://youtu.be/VJCXwxvLNkY'
+#lang_dest = 'ar'
 
 va.vta(url)
 response = spt.getText()

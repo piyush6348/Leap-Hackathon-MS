@@ -12,7 +12,16 @@ $(function () {
             url: url,
             lang: lang
         },function (response) {
-            console.log(response);
+            //console.log(response);
+            response = JSON.parse(response)
+            let captions = response['captions']
+            let translation = response['translation']
+            let meaning = response['meaning']
+            let keywords = response['keywords']
+            console.log("captions "+ captions)
+            console.log("translation "+ translation)
+            console.log("meaning "+ meaning)
+            console.log("keywords "+ keywords)
         })
     })
     console.log("Loaded")
